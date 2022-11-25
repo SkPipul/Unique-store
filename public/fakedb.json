@@ -1,0 +1,68 @@
+[
+    {
+        "_id": 1,
+        "categoryName": "Samsung",
+        "category": [
+            {
+                "name": "Samsung Galaxy S22+",
+                "location": "Chittagong, Bangladesh",
+                "resale-price": 90000,
+                "original-price": 140000,
+                "use": 1,
+                "sellers-name": "Jabed"
+            },
+            {
+                "name": "Samsung Galaxy A52",
+                "location": "Khulna, Bangladesh",
+                "resale-price": 22000,
+                "original-price": 35000,
+                "use": 1,
+                "sellers-name": "Karim"
+            }
+        ]
+    },
+    {
+        "_id": 2,
+        "categoryName": "Iphone",
+        "category": [
+            {
+                "name": "Iphone 13 pro max",
+                "location": "Dhaka, Bangladesh",
+                "resale-price": 110000,
+                "original-price": 145000,
+                "use": 1,
+                "sellers-name": "Rahim"
+            },
+            {
+                "name": "Iphone 11",
+                "location": "Barishal, Bangladesh",
+                "resale-price": 55000,
+                "original-price": 85000,
+                "use": 1,
+                "sellers-name": "Kuddus"
+            }
+        ]
+    },
+    {
+        "_id": 3,
+        "categoryName": "Oneplus",
+        "category": [
+            {
+                "name": "Oneplus 9 pro",
+                "location": "Chittagong, Bangladesh",
+                "resale-price": 45000,
+                "original-price": 80000,
+                "use": 1,
+                "sellers-name": "Alia"
+            },
+            {
+                "name": "Oneplus Nord N10",
+                "location": "Chittagong, Bangladesh",
+                "resale-price": 25000,
+                "original-price": 35000,
+                "use": 1,
+                "sellers-name": "Mofij"
+            }
+        ]
+    }
+]

@@ -2,9 +2,9 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="">
-        <h2 className="text-3xl font-mono font font-extrabold my-2">You Can Sell or Buy Mobile from our website</h2>
-        <p>We are provide many kinds of phones from seller and we buy this to the customer through on our website.</p>
+    <div className="my-8">
+        <h2 className="text-center text-3xl font-mono font font-extrabold my-2">You Can Sell or Buy Mobile from our website</h2>
+        <p className="text-center">We are provide many kinds of used phones from seller and we buy this to the customer through on our website.</p>
       <div className="carousel w-1/2 mx-auto mb-10 mt-5 rounded-sm">
         <div id="slide1" className="carousel-item relative w-full">
           <img
