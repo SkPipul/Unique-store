@@ -2,7 +2,7 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="my-8">
+    <div className="mt-8 mb-20">
         <h2 className="text-center text-3xl font-mono font font-extrabold my-2">You Can Sell or Buy Mobile from our website</h2>
         <p className="text-center">We are provide many kinds of used phones from seller and we buy this to the customer through on our website.</p>
       <div className="carousel w-1/2 mx-auto mb-10 mt-5 rounded-sm">
