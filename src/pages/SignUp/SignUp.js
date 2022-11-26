@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const SignUp = () => {
   const {
@@ -8,31 +10,31 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
   const [signUpError, setSignUPError] = useState("");
   const navigate = useNavigate();
 
   const handleSignUp = (data) => {
     console.log(data);
-    // setSignUPError("");
-    // createUser(data.email, data.password)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     console.log(user);
-    //     toast("User Created Successfully.");
-    //     const userInfo = {
-    //       displayName: data.name,
-    //     };
-    //     updateUser(userInfo)
-    //       .then(() => {
-    //         navigate("/");
-    //       })
-    //       .catch((err) => console.log(err));
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     setSignUPError(error.message);
-    //   });
+    setSignUPError("");
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        swal("User Created Successfully.", "success");
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {
+            navigate("/");
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((error) => {
+        console.log(error);
+        setSignUPError(error.message);
+      });
   };
 
   return (
@@ -71,6 +73,16 @@ const SignUp = () => {
             {errors.email && (
               <p className="text-red-500">{errors.email.message}</p>
             )}
+          </div>
+          <div>
+          <label className="label">
+              {" "}
+              <span className="label-text">Option</span>
+            </label>
+            <select className="select select-bordered w-full max-w-xs">
+              <option>Buyer</option>
+              <option>Seller</option>
+            </select>
           </div>
           <div className="form-control w-full max-w-xs">
             <label className="label">
