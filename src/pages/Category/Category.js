@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import CategoryOption from "./CategoryOption";
+import Products from "./Products";
 
 const Category = () => {
 
@@ -23,10 +23,10 @@ const Category = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-32 gap-2">
         {categories.map((category) => (
-          <CategoryOption
+          <Products
             key={category._id}
             category={category}
-          ></CategoryOption>
+          ></Products>
         ))}
       </div>
     </div>
