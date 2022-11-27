@@ -3,6 +3,7 @@ import Main from "../../layout/Main/Main";
 import Category from "../../pages/Category/Category";
 import ProductDetails from "../../pages/Category/ProductDetails";
 import Dashboard from "../../pages/Dashboard/Dashboard";
+import MyOrders from "../../pages/Dashboard/MyOrders/MyOrders";
 import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
 import SignUp from "../../pages/SignUp/SignUp";
@@ -34,10 +35,16 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
             },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>
-            }
+                element: <MyOrders></MyOrders>
+            },
         ]
     }
 ]);
