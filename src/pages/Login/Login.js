@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
+import swal from "sweetalert";
 
 const Login = () => {
   const {
@@ -24,7 +25,8 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
+          swal("Good job","Login Successful","success")
+          navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);

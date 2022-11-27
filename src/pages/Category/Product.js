@@ -1,21 +1,22 @@
 import React, { useContext, useState } from "react";
+import swal from "sweetalert";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const Product = ({ product }) => {
   const { user } = useContext(AuthContext);
   const [modalData, setModalData] = useState({});
-//   const handleBook = (id) => {
-//     // console.log(id);
-//     fetch(`http://localhost:5000/products/category/${id}`)
-//       .then((res) => res.json())
-//       .then((data) => {
-//         setModalData(data);
-//         // console.log(data);
-//       });
-//   };
-  console.log(modalData);
+    const handleBook = (id) => {
+      // console.log(id);
+      fetch(`http://localhost:5000/products/category/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setModalData(data);
+          // console.log(data);
+        });
+    };
+  console.log(modalData.name);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const productName = form.productName.value;
@@ -27,28 +28,31 @@ const Product = ({ product }) => {
     const phone = form.phone.value;
 
     const booking = {
-        productName,
-        originalPrice,
-        resalePrice,
-        name,
-        email,
-        location,
-        phone
-    }
+      productName,
+      originalPrice,
+      resalePrice,
+      name,
+      email,
+      location,
+      phone,
+    };
 
-    fetch('http://localhost:5000/bookings', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(booking)
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
     })
-    .then(res => res.json())
-    .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-    })
-
-  }
+        if (data.acknowledged) {
+          setModalData({});
+          swal("Good job", "Product booked successfully", "success");
+        }
+      });
+  };
 
   return (
     <div>
@@ -75,7 +79,7 @@ const Product = ({ product }) => {
             <p className="font-semibold mb-2">Posted date: {product.date}</p>
             <p className="font-semibold mb-4">Used time: {product.used} year</p>
             <label
-              onClick={() => setModalData(product)}
+              onClick={() => handleBook(product._id)}
               htmlFor="my-booking"
               className="btn btn-outline"
             >
@@ -86,11 +90,11 @@ const Product = ({ product }) => {
         </div>
       </div>
       {/* Booking Modal */}
+
       <input type="checkbox" id="my-booking" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label
-            onClick={() => setModalData({})}
             htmlFor="my-booking"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
