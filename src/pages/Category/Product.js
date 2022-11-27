@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 
 const Product = ({ product }) => {
   const { user } = useContext(AuthContext);
   const [modalData, setModalData] = useState({});
+  const navigate = useNavigate();
     const handleBook = (id) => {
       // console.log(id);
       fetch(`http://localhost:5000/products/category/${id}`)
@@ -14,7 +16,7 @@ const Product = ({ product }) => {
           // console.log(data);
         });
     };
-  console.log(modalData.name);
+  // console.log(modalData.name);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,6 +24,7 @@ const Product = ({ product }) => {
     const productName = form.productName.value;
     const originalPrice = form.originalPrice.value;
     const resalePrice = form.resalePrice.value;
+    const image = form.image.value;
     const name = form.name.value;
     const email = form.email.value;
     const location = form.location.value;
@@ -31,6 +34,7 @@ const Product = ({ product }) => {
       productName,
       originalPrice,
       resalePrice,
+      image,
       name,
       email,
       location,
@@ -48,8 +52,8 @@ const Product = ({ product }) => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          setModalData({});
           swal("Good job", "Product booked successfully", "success");
+          navigate('/dashboard/myorders')          
         }
       });
   };
@@ -80,7 +84,7 @@ const Product = ({ product }) => {
             <p className="font-semibold mb-4">Used time: {product.used} year</p>
             <label
               onClick={() => handleBook(product._id)}
-              htmlFor="my-booking"
+              htmlFor={`my-booking-${product._id}`}
               className="btn btn-outline"
             >
               Book Now
@@ -91,11 +95,11 @@ const Product = ({ product }) => {
       </div>
       {/* Booking Modal */}
 
-      <input type="checkbox" id="my-booking" className="modal-toggle" />
+      <input type="checkbox" id={`my-booking-${product._id}`} className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label
-            htmlFor="my-booking"
+            htmlFor={`my-booking-${product._id}`}
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
@@ -134,6 +138,18 @@ const Product = ({ product }) => {
               name="resalePrice"
               type="text"
               defaultValue={modalData.resalePrice}
+              disabled
+              placeholder="Resale price"
+              className="input w-full input-bordered"
+            />
+            <label className="label">
+              {" "}
+              <span className="label-text">Image</span>
+            </label>
+            <input
+              name="image"
+              type="text"
+              defaultValue={modalData.img}
               disabled
               placeholder="Resale price"
               className="input w-full input-bordered"

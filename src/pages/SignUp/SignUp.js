@@ -21,7 +21,7 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        swal("User Created Successfully.", "success");
+        swal("Good","User Created Successfully.", "success");
         const userInfo = {
           displayName: data.name,
         };
@@ -79,9 +79,11 @@ const SignUp = () => {
               {" "}
               <span className="label-text">Option</span>
             </label>
-            <select className="select select-bordered w-full max-w-xs">
-              <option>Buyer</option>
-              <option>Seller</option>
+            <select {...register("role", {
+                required: true,
+              })} className="select select-bordered w-full max-w-xs">
+              <option value={'Buyer'}>Buyer</option>
+              <option value={'Seller'}>Seller</option>
             </select>
           </div>
           <div className="form-control w-full max-w-xs">

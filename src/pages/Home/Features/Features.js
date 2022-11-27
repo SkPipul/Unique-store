@@ -5,7 +5,7 @@ import { VscWorkspaceTrusted } from 'react-icons/vsc';
 
 const Features = () => {
   return (
-    <div className="grid gap-2 ml-12 my-20 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-2 ml-3 my-20 md:grid-cols-2 lg:grid-cols-3">
       <div className="card w-96 bg-base-100 shadow-xl">
         <figure className="px-5 pt-10">
           <FaMobileAlt className="text-6xl"></FaMobileAlt>

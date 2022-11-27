@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import Product from "./Product";
 
 const CategoryDetails = () => {
-  const { user } = useContext(AuthContext);
   const products = useLoaderData();
   return (
     <div>
