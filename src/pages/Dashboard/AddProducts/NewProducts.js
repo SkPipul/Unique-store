@@ -1,11 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import Loading from "../../../Loading/Loading";
+import ConfirmDeleteUser from "../ConfirmDeleteUser/ConfirmDeleteUser";
 
 const NewProducts = () => {
+  const navigate = useNavigate();
+  const [deleteProduct, setDeleteProduct] = useState(null);
+
+  const closeModal = () => {
+    setDeleteProduct(null);
+  }
+
   const { user } = useContext(AuthContext);
-  const { data: products = [], isLoading } = useQuery({
+  const { data: products = [], isLoading, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
       fetch(`http://localhost:5000/myproducts?email=${user?.email}`).then(
@@ -13,15 +23,37 @@ const NewProducts = () => {
       ),
   });
 
-  const handleAdvertise = (products) => {
-    console.log(products);
-    // fetch('http://localhost:5000/advertise', {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json'
-    //   },
-    //   body: JSON.stringify(products)
-    // })
+  const handleDeleteProduct = product => {
+    fetch(`http://localhost:5000/myproducts/${product._id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount > 0) {
+          refetch();
+          swal("Yahoooo!", "Product deleted succefully", "success");
+        }
+      });
+  }
+
+  const handleAdvertise = (product) => {
+    console.log(product);
+    fetch('http://localhost:5000/advertise', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(product)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if(data.acknowledged){
+        navigate('/')
+        swal("Good Job","Advertise posted successfully","success")
+      }
+    })
   }
 
   if (isLoading) {
@@ -45,7 +77,20 @@ const NewProducts = () => {
               </p>
             </div>
             <p className="font-semibold">Location: {product.location}</p>
-            <button onClick={handleAdvertise} className="btn bg-green-500 border-none">Advertise</button>
+            <p className="font-bold">Status: Available</p>
+            <button onClick={() =>handleAdvertise(product)} className="btn bg-green-500 border-none">Advertise</button>
+            <label onClick={() => setDeleteProduct(product)} htmlFor="confirmation-modal" className="btn bg-red-500 border-none">Delete</label>
+          </div>
+          <div>
+          {
+          deleteProduct && <ConfirmDeleteUser
+          title={'Are you sure you want to delete this product?'}
+          deleteAction={handleDeleteProduct}
+          closeModal={closeModal}
+          message={'If you click the confirm button the data will removed permanently'}
+          data={deleteProduct}
+          ></ConfirmDeleteUser>
+        }
           </div>
         </div>
       ))}

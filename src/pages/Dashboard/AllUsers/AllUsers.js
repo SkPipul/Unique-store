@@ -67,12 +67,14 @@ const AllUsers = () => {
                 )}
               </td>
               <td>
-                  <label
+                  {
+                    user?.role !== 'admin' &&
+                    <label
                     onClick={() => setDeleteUser(user)} htmlFor="confirmation-modal"
                     className="btn btn-sm bg-red-500 border-none"
                   >
                     Delete
-                  </label>
+                  </label>}
               </td>
             </tr>
           ))}
