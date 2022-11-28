@@ -27,6 +27,23 @@ const SignUp = () => {
         };
         updateUser(userInfo)
           .then(() => {
+            const userData = {
+              userName: user.displayName,
+              Email: user.email,
+              role: data.role
+            }
+            console.log(userData);
+            fetch('http://localhost:5000/users', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(userData)
+            })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+            })
             navigate("/");
           })
           .catch((err) => console.log(err));
@@ -82,8 +99,8 @@ const SignUp = () => {
             <select {...register("role", {
                 required: true,
               })} className="select select-bordered w-full max-w-xs">
-              <option value={'Buyer'}>Buyer</option>
-              <option value={'Seller'}>Seller</option>
+              <option value='buyer'>buyer</option>
+              <option value="seller">seller</option>
             </select>
           </div>
           <div className="form-control w-full max-w-xs">
