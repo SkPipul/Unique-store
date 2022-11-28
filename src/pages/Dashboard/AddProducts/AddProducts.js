@@ -63,14 +63,14 @@ const AddProducts = () => {
           .then(result => {
             console.log(result);
             swal("Good job","Product Added Successfully","success");
-            navigate('/category')
+            navigate('/dashboard/newproducts')
           })
         }
       })
     }
 
   return (
-    <div className="mx-auto">
+    <div className="flex justify-center items-center mb-10">
       <form onSubmit={handleSubmit(handleAddProduct)} className="grid grid-cols-1 mt-2 w-3/4">
             <label className="label">
               {" "}
@@ -191,7 +191,7 @@ const AddProducts = () => {
             {errors.sellersName && <p className='text-red-500'>{errors.sellersName.message}</p>}
             <br />
             <input
-              className="btn btn-outline w-2/12 mx-auto"
+              className="btn btn-outline w-1/4 mx-auto"
               type="submit"
               value="Submit"
             />

@@ -14,16 +14,17 @@ const Dashboard = () => {
         res.json()
       ),
   });
-  // if(isLoading){
-  //   return <Loading></Loading>
-  // }
+  if(isLoading){
+    return <Loading></Loading>
+  }
   return (
     <div>
       <Navbar></Navbar>
       <div className="drawer drawer-mobile">
         <input id="my-booking-side" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
-          <h2>Welcome guys</h2>
+          <h2 className="text-3xl font-mono font-bold text-center mt-5">Welcome to the Dashboard</h2>
+          <p className="text-center mb-5">A seller can add product and a buyer can booked and buy product</p>
           <Outlet></Outlet>
         </div>
         <div className="drawer-side">
@@ -41,7 +42,7 @@ const Dashboard = () => {
                       <Link to="/dashboard/addproducts">Add Product</Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/newproducts">New Product</Link>
+                      <Link to="/dashboard/newproducts">My Product</Link>
                     </li>
                   </>
                 ) : (
