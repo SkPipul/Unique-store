@@ -3,6 +3,7 @@ import Main from "../../layout/Main/Main";
 import Category from "../../pages/Category/Category";
 import ProductDetails from "../../pages/Category/ProductDetails";
 import AddProducts from "../../pages/Dashboard/AddProducts/AddProducts";
+import NewProducts from "../../pages/Dashboard/AddProducts/NewProducts";
 import AllUsers from "../../pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import MyOrders from "../../pages/Dashboard/MyOrders/MyOrders";
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: '/dashboard/myorders',
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addproducts',
                 element: <AddProducts></AddProducts>
+            },
+            {
+                path: '/dashboard/newproducts',
+                element: <NewProducts></NewProducts>
             },
             {
                 path: '/dashboard/allusers',

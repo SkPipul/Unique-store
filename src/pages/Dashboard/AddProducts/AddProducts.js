@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const AddProducts = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const imageKey = process.env.REACT_APP_imgbb_key;
+  const { user } = useContext(AuthContext)
 
     const handleAddProduct = data => {
       const name = data.name;
@@ -40,6 +42,7 @@ const AddProducts = () => {
           console.log(imgData.data.url);
           const product = {
             categoryId,
+            email: user.email,
             name: data.name,
             img: imgData.data.url,
             location: data.location,
@@ -69,6 +72,19 @@ const AddProducts = () => {
   return (
     <div className="mx-auto">
       <form onSubmit={handleSubmit(handleAddProduct)} className="grid grid-cols-1 mt-2 w-3/4">
+            <label className="label">
+              {" "}
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              {...register("email")}
+              defaultValue={user?.email}
+              disabled
+              type="email"
+              placeholder="Email"
+              className="input w-full input-bordered"
+              />
+              {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
             <label className="label">
               {" "}
               <span className="label-text">Product</span>

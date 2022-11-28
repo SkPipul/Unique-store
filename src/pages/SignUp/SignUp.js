@@ -29,7 +29,7 @@ const SignUp = () => {
           .then(() => {
             const userData = {
               userName: user.displayName,
-              Email: user.email,
+              email: user.email,
               role: data.role
             }
             console.log(userData);
