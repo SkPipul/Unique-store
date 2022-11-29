@@ -37,12 +37,15 @@ const AllUsers = () => {
   };
 
   const handleVerify = ( user ) => {
-    fetch(`http://localhost:5000/myproducts${user._id}`,{
+    fetch(`http://localhost:5000/users/user/${user._id}`,{
       method: 'PUT'
     })
     .then(res => res.json())
     .then(data => {
       console.log(data);
+      if(data.acknowledged){
+        swal("Wow!","Seller verifiyed","success")
+      }
     })
   }
 

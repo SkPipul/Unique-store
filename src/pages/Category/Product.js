@@ -1,7 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
+import { HiBadgeCheck } from 'react-icons/hi';
 
 const Product = ({ product }) => {
   const { user } = useContext(AuthContext);
@@ -58,6 +60,15 @@ const Product = ({ product }) => {
       });
   };
 
+  const {data: productData} = useQuery({
+    queryKey: ['productData'],
+    queryFn: () => fetch(`http://localhost:5000/products/seller/email=${user?.email}`,{
+      method: 'PUT'
+    })
+    .then(res => res.json())
+  })
+  console.log(productData);
+
   return (
     <div>
       <div className="hero bg-base-200 w-3/4 mx-auto">
@@ -71,6 +82,9 @@ const Product = ({ product }) => {
             <h1 className="text-4xl font-bold text-center mb-3">
               {product.name}
             </h1>
+            <h2 className="text-2xl font-bold my-2">Seller Name: <span className="text-green-500">{product.sellersName}</span>
+             {/* { productData?.verify && <span><HiBadgeCheck></HiBadgeCheck></span>} */}
+             </h2>
             <p className="text-xl font-bold mb-2">
               Original Price{" "}
               <span className="text-orange-500">${product.originalPrice}</span>
