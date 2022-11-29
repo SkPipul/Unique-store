@@ -3,21 +3,21 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
-import { HiBadgeCheck } from 'react-icons/hi';
+import { HiBadgeCheck } from "react-icons/hi";
 
 const Product = ({ product }) => {
   const { user } = useContext(AuthContext);
   const [modalData, setModalData] = useState({});
   const navigate = useNavigate();
-    const handleBook = (id) => {
-      // console.log(id);
-      fetch(`http://localhost:5000/products/category/${id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setModalData(data);
-          // console.log(data);
-        });
-    };
+  const handleBook = (id) => {
+    // console.log(id);
+    fetch(`https://unique-store-server.vercel.app/products/category/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setModalData(data);
+        // console.log(data);
+      });
+  };
   // console.log(modalData.name);
 
   const handleSubmit = (event) => {
@@ -43,7 +43,7 @@ const Product = ({ product }) => {
       phone,
     };
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://unique-store-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -55,14 +55,14 @@ const Product = ({ product }) => {
         console.log(data);
         if (data.acknowledged) {
           swal("Good job", "Product booked successfully", "success");
-          navigate('/dashboard/myorders')          
+          navigate("/dashboard/myorders");
         }
       });
   };
 
   // const {data: productData} = useQuery({
   //   queryKey: ['productData'],
-  //   queryFn: () => fetch(`http://localhost:5000/users/seller/email=${user?.email}`,{
+  //   queryFn: () => fetch(`https://unique-store-server.vercel.app/users/seller/email=${user?.email}`,{
   //     method: 'PUT'
   //   })
   //   .then(res => res.json())
@@ -82,9 +82,12 @@ const Product = ({ product }) => {
             <h1 className="text-4xl font-bold text-center mb-3">
               {product.name}
             </h1>
-            <h2 className="text-2xl font-bold my-2">Seller Name: <span className="text-green-500">{product.sellersName}</span>
-             {/* { productData?.verify && <span><HiBadgeCheck></HiBadgeCheck></span>} */}
-             </h2>
+            <div className="flex items-center">
+              <h2 className="text-2xl font-bold my-2">
+                Seller: <span className="text-green-500">{product.sellersName}</span>
+              </h2>
+              {/* <HiBadgeCheck className="text-blue-600 text-xl mx-2"></HiBadgeCheck> */}
+            </div>
             <p className="text-xl font-bold mb-2">
               Original Price{" "}
               <span className="text-orange-500">${product.originalPrice}</span>
@@ -109,7 +112,11 @@ const Product = ({ product }) => {
       </div>
       {/* Booking Modal */}
 
-      <input type="checkbox" id={`my-booking-${product._id}`} className="modal-toggle" />
+      <input
+        type="checkbox"
+        id={`my-booking-${product._id}`}
+        className="modal-toggle"
+      />
       <div className="modal">
         <div className="modal-box relative">
           <label

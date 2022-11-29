@@ -44,7 +44,7 @@ const Login = () => {
             email: user.email,
             role: 'buyer'
           }
-          fetch('http://localhost:5000/users', {
+          fetch('https://unique-store-server.vercel.app/users', {
               method: 'POST',
               headers: {
                 'content-type': 'application/json'

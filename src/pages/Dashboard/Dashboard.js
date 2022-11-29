@@ -9,7 +9,7 @@ const Dashboard = () => {
   const { data: currentUser } = useQuery({
     queryKey: ["user", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/users/user/${user?.email}`).then((res) =>
+      fetch(`https://unique-store-server.vercel.app/users/user/${user?.email}`).then((res) =>
         res.json()
       ),
   });

@@ -8,7 +8,7 @@ const MyOrders = () => {
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["bookings"],
     queryFn: () =>
-      fetch(`http://localhost:5000/bookings?email=${user?.email}`).then((res) => res.json()),
+      fetch(`https://unique-store-server.vercel.app/bookings?email=${user?.email}`).then((res) => res.json()),
   });
 
   if (isLoading) {

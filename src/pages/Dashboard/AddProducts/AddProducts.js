@@ -52,7 +52,7 @@ const AddProducts = () => {
             used: data.used,
             sellersName: data.sellersName,
           }
-          fetch('http://localhost:5000/products', {
+          fetch('https://unique-store-server.vercel.app/products', {
             method: 'POST',
             headers: {
               'content-type': 'application/json'

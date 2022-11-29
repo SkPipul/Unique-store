@@ -22,13 +22,13 @@ const NewProducts = () => {
   } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch(`http://localhost:5000/myproducts?email=${user?.email}`).then(
+      fetch(`https://unique-store-server.vercel.app/myproducts?email=${user?.email}`).then(
         (res) => res.json()
       ),
   });
 
   const handleDeleteProduct = (product) => {
-    fetch(`http://localhost:5000/myproducts/${product._id}`, {
+    fetch(`https://unique-store-server.vercel.app/myproducts/${product._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -43,7 +43,7 @@ const NewProducts = () => {
 
   const handleAdvertise = (product) => {
     console.log(product);
-    fetch("http://localhost:5000/advertise", {
+    fetch("https://unique-store-server.vercel.app/advertise", {
       method: "POST",
       headers: {
         "content-type": "application/json",

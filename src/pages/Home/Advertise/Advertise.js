@@ -5,7 +5,7 @@ import Loading from "../../../Loading/Loading";
 const Advertise = () => {
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch('http://localhost:5000/advertise')
+        queryFn: () => fetch('https://unique-store-server.vercel.app/advertise')
         .then(res => res.json())
     });
     if(isLoading){
@@ -13,7 +13,9 @@ const Advertise = () => {
     }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 mx-5">
+    <div>
+      <h1 className="text-4xl font-mono font-bold text-center text-green-500 mb-4">Available Product with biggest discount</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-3 mx-5">
       {
         products.map(product => <div key={product._id} className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
@@ -24,6 +26,7 @@ const Advertise = () => {
         </figure>
       </div>)
       }
+    </div>
     </div>
   );
 };

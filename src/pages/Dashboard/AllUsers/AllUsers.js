@@ -18,12 +18,12 @@ const AllUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch("http://localhost:5000/users").then((res) => res.json()),
+      fetch("https://unique-store-server.vercel.app/users").then((res) => res.json()),
   });
 
   const handleDeleteUser = (user) => {
     // console.log(user);
-    fetch(`http://localhost:5000/users/user/${user._id}`, {
+    fetch(`https://unique-store-server.vercel.app/users/user/${user._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -37,7 +37,7 @@ const AllUsers = () => {
   };
 
   const handleVerify = ( user ) => {
-    fetch(`http://localhost:5000/users/user/${user._id}`,{
+    fetch(`https://unique-store-server.vercel.app/users/user/${user._id}`,{
       method: 'PUT'
     })
     .then(res => res.json())
