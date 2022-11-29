@@ -17,11 +17,17 @@ const MyOrders = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-center my-4">My Orders</h2>
-      {/* table */}
+        {
+          bookings.length !== 0 ?
+          <h2 className="text-2xl font-bold text-center my-4">My Orders</h2>
+        :
+        <h2 className="text-2xl font-bold text-center my-8 text-red-500">No Order Available right now</h2>
+        }
+      
       <div className="overflow-x-auto">
         <table className="table w-3/4 mx-auto">
-          <thead>
+          {bookings.length !== 0 &&
+            <thead>
             <tr>
               <th></th>
               <th>Product</th>
@@ -31,7 +37,7 @@ const MyOrders = () => {
               <th>User Name</th>
               <th>Payment</th>
             </tr>
-          </thead>
+          </thead>}
           <tbody>
             {bookings.map((booking, i) => (
               <tr key={booking._id}>
@@ -56,6 +62,7 @@ const MyOrders = () => {
           </tbody>
         </table>
       </div>
+      
     </div>
   );
 };

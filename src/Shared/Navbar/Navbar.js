@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
+import { AiOutlineDeploymentUnit } from 'react-icons/ai';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -68,7 +69,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
-          UNIQUE Store
+          <AiOutlineDeploymentUnit className="text-4xl mx-2 text-green-500"></AiOutlineDeploymentUnit> UNIQUE Store
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

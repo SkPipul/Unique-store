@@ -60,14 +60,14 @@ const Product = ({ product }) => {
       });
   };
 
-  const {data: productData} = useQuery({
-    queryKey: ['productData'],
-    queryFn: () => fetch(`http://localhost:5000/products/seller/email=${user?.email}`,{
-      method: 'PUT'
-    })
-    .then(res => res.json())
-  })
-  console.log(productData);
+  // const {data: productData} = useQuery({
+  //   queryKey: ['productData'],
+  //   queryFn: () => fetch(`http://localhost:5000/users/seller/email=${user?.email}`,{
+  //     method: 'PUT'
+  //   })
+  //   .then(res => res.json())
+  // })
+  // console.log(productData);
 
   return (
     <div>
