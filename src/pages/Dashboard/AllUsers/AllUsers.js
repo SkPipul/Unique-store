@@ -45,6 +45,7 @@ const AllUsers = () => {
       console.log(data);
       if(data.acknowledged){
         swal("Wow!","Seller verifiyed","success")
+        refetch();
       }
     })
   }

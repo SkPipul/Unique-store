@@ -1,24 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
-import { HiBadgeCheck } from "react-icons/hi";
 
 const Product = ({ product }) => {
   const { user } = useContext(AuthContext);
   const [modalData, setModalData] = useState({});
   const navigate = useNavigate();
   const handleBook = (id) => {
-    // console.log(id);
     fetch(`https://unique-store-server.vercel.app/products/category/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setModalData(data);
-        // console.log(data);
       });
   };
-  // console.log(modalData.name);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -60,15 +55,6 @@ const Product = ({ product }) => {
       });
   };
 
-  // const {data: productData} = useQuery({
-  //   queryKey: ['productData'],
-  //   queryFn: () => fetch(`https://unique-store-server.vercel.app/users/seller/email=${user?.email}`,{
-  //     method: 'PUT'
-  //   })
-  //   .then(res => res.json())
-  // })
-  // console.log(productData);
-
   return (
     <div>
       <div className="hero bg-base-200 w-3/4 mx-auto">
@@ -82,12 +68,9 @@ const Product = ({ product }) => {
             <h1 className="text-4xl font-bold text-center mb-3">
               {product.name}
             </h1>
-            <div className="flex items-center">
-              <h2 className="text-2xl font-bold my-2">
-                Seller: <span className="text-green-500">{product.sellersName}</span>
+            <h2 className="text-2xl font-bold my-2">
+                Seller Name: <span className="text-green-500">{product.sellersName}</span>
               </h2>
-              {/* <HiBadgeCheck className="text-blue-600 text-xl mx-2"></HiBadgeCheck> */}
-            </div>
             <p className="text-xl font-bold mb-2">
               Original Price{" "}
               <span className="text-orange-500">${product.originalPrice}</span>
@@ -106,7 +89,6 @@ const Product = ({ product }) => {
             >
               Book Now
             </label>
-            {/* <button onClick={() => handleBook(product._id)} className="btn">Book Now</button> */}
           </div>
         </div>
       </div>
