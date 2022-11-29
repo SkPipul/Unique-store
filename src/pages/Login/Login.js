@@ -11,7 +11,7 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { signIn } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, setLoading } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,8 +31,37 @@ const Login = () => {
       .catch((error) => {
         console.log(error.message);
         setLoginError(error.message);
-      });
-  };
+      });      
+    };
+    
+    const handleGoogle = () => {
+      signInWithGoogle()
+      .then(res => {
+          const user = res.user;
+          console.log(user);
+          const userData = {
+            userName: user.displayName,
+            email: user.email,
+            role: 'buyer'
+          }
+          fetch('http://localhost:5000/users', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(userData)
+            })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+              setLoading(false)
+              navigate(from, {replace: true})
+            })
+          setLoading(false)
+          swal("Good job","Login Successful","success")
+      })
+      .catch(err => console.error(err))
+  }
 
   return (
     <div className="h-[800px] flex justify-center items-center">
@@ -95,7 +124,7 @@ const Login = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full"><FcGoogle className="text-2xl mx-2"></FcGoogle> CONTINUE WITH GOOGLE</button>
+        <button onClick={handleGoogle} className="btn btn-outline w-full"><FcGoogle className="text-2xl mx-2"></FcGoogle> CONTINUE WITH GOOGLE</button>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updateUser, setLoading } = useContext(AuthContext);
   const [signUpError, setSignUPError] = useState("");
   const navigate = useNavigate();
 
@@ -43,8 +43,9 @@ const SignUp = () => {
             .then(res => res.json())
             .then(data => {
               console.log(data);
+              setLoading(false)
+              navigate("/");
             })
-            navigate("/");
           })
           .catch((err) => console.log(err));
       })

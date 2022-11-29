@@ -36,6 +36,16 @@ const AllUsers = () => {
       });
   };
 
+  const handleVerify = ( user ) => {
+    fetch(`http://localhost:5000/myproducts${user._id}`,{
+      method: 'PUT'
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    })
+  }
+
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -60,8 +70,8 @@ const AllUsers = () => {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-                {user?.role === "seller" && (
-                  <button className="btn btn-sm bg-green-500 border-none">
+                {user?.role === "seller"&& user?.verify !== true && (
+                  <button onClick={() => handleVerify(user)} className="btn btn-sm bg-green-500 border-none">
                     Verify
                   </button>
                 )}
