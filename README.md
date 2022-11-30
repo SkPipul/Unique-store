@@ -24,4 +24,4 @@ adminPassword: <123456>
 
 * A seller can add product and advertise the adding product also he can delete the added product.
 
-*This site is responsive.
+* This site is responsive.
