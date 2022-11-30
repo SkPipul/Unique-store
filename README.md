@@ -1,4 +1,4 @@
-# Getting Started with BiTx Photography
+# Getting Started with Unique Store
 
 This project was bootstrapped with [ UNIQUE Store ]( https://unique-store-723e3.web.app/ ).
 
