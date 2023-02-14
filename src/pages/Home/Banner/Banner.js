@@ -1,10 +1,16 @@
 import React from "react";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const Banner = () => {
   return (
     <div className="mt-8 mb-20">
-        <h2 className="text-center text-3xl font-mono font font-extrabold my-2">You Can Sell or Buy Mobile from our website</h2>
-        <p className="text-center">We are provide many kinds of used phones from seller and we buy this to the customer through on our website.</p>
+      <h2 className="text-center text-3xl font-mono font font-extrabold my-2">
+        You Can Sell or Buy Mobile from our website
+      </h2>
+      <p className="text-center">
+        We are provide many kinds of used phones from seller and we buy this to
+        the customer through on our website.
+      </p>
       <div className="carousel w-3/4 mx-auto mb-10 mt-5 rounded-sm">
         <div id="slide1" className="carousel-item relative w-full">
           <img
@@ -67,6 +73,10 @@ const Banner = () => {
           </div>
         </div>
       </div>
+      <MessengerCustomerChat
+        pageId="100083158557902"
+        appId="914690736626725"
+      />
     </div>
   );
 };
