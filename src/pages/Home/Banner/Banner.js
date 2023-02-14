@@ -1,5 +1,4 @@
 import React from "react";
-import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const Banner = () => {
   return (
@@ -73,10 +72,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
-      <MessengerCustomerChat
-        pageId="100083158557902"
-        appId="914690736626725"
-      />
+      
     </div>
   );
 };

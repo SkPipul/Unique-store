@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import swal from "sweetalert";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const Login = () => {
   const {
@@ -126,6 +127,10 @@ const Login = () => {
         <div className="divider">OR</div>
         <button onClick={handleGoogle} className="btn btn-outline w-full"><FcGoogle className="text-2xl mx-2"></FcGoogle> CONTINUE WITH GOOGLE</button>
       </div>
+      <MessengerCustomerChat
+        pageId="100083158557902"
+        appId="914690736626725"
+      />
     </div>
   );
 };
