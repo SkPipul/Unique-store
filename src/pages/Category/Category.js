@@ -21,7 +21,7 @@ const Category = () => {
           button
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-32 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-32 gap-5">
         {categories.map((category) => (
           <Products
             key={category._id}
