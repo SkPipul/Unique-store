@@ -9,7 +9,7 @@ const Expectations = () => {
       <p className="text-gray-400 font-mono text-2xl text-center mt-4 mb-8">
         REFINED VIEWING EXPERIENCE
       </p>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
         <div>
         <div className="w-full h-full overflow-hidden">
         <img className="w-full h-full hover:scale-125 transition-all duration-1000"

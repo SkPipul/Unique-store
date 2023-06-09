@@ -13,7 +13,7 @@ const Category = () => {
   return (
     <div>
       <div className="text-center my-10">
-        <h2 className="text-4xl font-serif font-bold">
+        <h2 className="text-4xl mb-2 uppercase font-bold">
           This is collection of used phones
         </h2>
         <p>
@@ -21,7 +21,7 @@ const Category = () => {
           button
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-32 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-32 gap-5 px-6">
         {categories.map((category) => (
           <Products
             key={category._id}

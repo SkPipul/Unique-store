@@ -6,7 +6,7 @@ import { MdLiveHelp } from "react-icons/md";
 const Offer = () => {
   return (
     <div className="bg-gray-200 py-10 mb-20">
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid lg:grid-cols-3 grid-cols-2 gap-4">
         <div className="flex items-center justify-center cursor-pointer">
           <FaShippingFast className="text-4xl mr-5"></FaShippingFast>
           <span>

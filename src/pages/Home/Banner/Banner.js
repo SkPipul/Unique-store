@@ -7,10 +7,10 @@ import "swiper/css";
 const Banner = () => {
   return (
     <div className="mt-8">
-      <h2 className="text-center text-4xl font-mono font font-extrabold mb-2">
+      <h2 className="text-center text-4xl uppercase font font-extrabold mb-2 px-4">
         You Can Sell or Buy Mobile from our website
       </h2>
-      <p className="text-center">
+      <p className="text-center px-4">
         We are provide many kinds of used phones from seller and we buy this to
         the customer through on our website.
       </p>
